@@ -1,9 +1,9 @@
-const HomePage = () => {
+function HomePage() {
 	return (
-		<main className="">
-			<h1 className="text-red-800">HomePage</h1>
+		<main className="bg-neutral-100 min-h-[calc(100vh-76px)] p-4">
+			<h2 className="text-center py-2 text-xl font-bold text-green-600">Welcome to Knowsy.</h2>
 		</main>
 	);
-};
+}
 
 export default HomePage;
