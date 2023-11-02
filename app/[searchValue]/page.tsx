@@ -32,7 +32,7 @@ async function SearchResults({ params }: T_SearchResultsProps) {
 	}
 
 	return (
-		<main className="bg-neutral-100 min-h-[calc(100vh-156px)] relative p-4">
+		<main className="bg-neutral-100 min-h-[calc(100vh-204px)] sm:min-h-[calc(100vh-156px)] relative p-4">
 			<ScrollButton />
 
 			<h2 className="text-center py-2 text-xl font-bold text-green-600">
