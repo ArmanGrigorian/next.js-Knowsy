@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { ReactNode } from "react";
 import { Open_Sans } from "next/font/google";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ function RootLayout({ children }: { children: ReactNode }) {
 			<body className={openSans.className + " " + "max-w-6xl mx-auto relative"}>
 				<NavBar />
 				{children}
+				<Footer/>
 			</body>
 		</html>
 	);

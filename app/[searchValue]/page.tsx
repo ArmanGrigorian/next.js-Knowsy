@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Title from "./components/CertainArticle";
 import toCapitalize from "@/lib/toCapitalize";
 import getWikiResults from "@/lib/getWikiResults";
 import ScrollButton from "./components/ScrollButton";
@@ -34,7 +32,7 @@ async function SearchResults({ params }: T_SearchResultsProps) {
 	}
 
 	return (
-		<main className="bg-neutral-100 min-h-[calc(100vh-76px)] relative p-4">
+		<main className="bg-neutral-100 min-h-[calc(100vh-156px)] relative p-4">
 			<ScrollButton />
 
 			<h2 className="text-center py-2 text-xl font-bold text-green-600">
