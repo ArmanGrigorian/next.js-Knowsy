@@ -1,30 +1,32 @@
-type T_SearchResultsProps = {
+interface I_SearchResultsProps {
 	params: {
 		searchValue: string;
 	};
 };
 
-type T_CertainArticleProps = {
-	certainArticle: T_CertainArticle;
+interface I_ArticlesListItemProps {
+	articleListItem: T_Article;
 };
 
-type T_ArticlesProps = {
-	articlesList: T_CertainArticle[] | undefined;
+interface I_ArticlesListProps {
+	articlesList: T_Article[];
 };
 
-type T_info = {
+type T_Info = {
 	source: string;
 };
 
-type T_CertainArticle = {
+type T_Thumbnail = {
+	source: string;
+	width: number;
+	height: number;
+};
+
+type T_Article = {
 	pageid: string;
 	title: string;
 	extract: string;
-	thumbnail?: {
-		sourse: string;
-		width: number;
-		height: number;
-	};
+	thumbnail?: T_Thumbnail;
 };
 
 type T_ArticlesList = {

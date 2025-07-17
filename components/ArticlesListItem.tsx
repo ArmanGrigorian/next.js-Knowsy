@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-function CertainArticle({ certainArticle }: T_CertainArticleProps) {
-	const info: T_info = {
+
+function ArticleListItem({ articleListItem }: I_ArticlesListItemProps) {
+	const info: T_Info = {
 		source: "",
 	};
 
-	if (certainArticle.thumbnail) {
-		Object.entries(certainArticle.thumbnail).forEach((val) => {
+	if (articleListItem.thumbnail) {
+		Object.entries(articleListItem.thumbnail).forEach((val) => {
 			if (val[0] === "source") info.source = val[1] as string;
 		});
 	}
@@ -17,7 +18,7 @@ function CertainArticle({ certainArticle }: T_CertainArticleProps) {
 			<div>
 				<h3 className="flex items-center gap-3">
 					<Link
-						href={`https://en.wikipedia.org/?curid=${certainArticle.pageid}`}
+						href={`https://en.wikipedia.org/?curid=${articleListItem.pageid}`}
 						target="_blank"
 						className="
 						text-neutral-900
@@ -27,18 +28,18 @@ function CertainArticle({ certainArticle }: T_CertainArticleProps) {
 						 underline-offset-2
 						 hover:italic 
 						 hover:opacity-70">
-						{certainArticle.title}
+						{articleListItem.title}
 					</Link>
 				</h3>
 
-				<p className="text-justify">{certainArticle.extract}</p>
+				<p className="text-justify">{articleListItem.extract}</p>
 			</div>
 
-			{certainArticle.thumbnail && (
-				<Image src={info.source} alt={certainArticle.title} width={60} height={50} loading="lazy" />
+			{articleListItem.thumbnail && (
+				<Image src={info.source} alt={articleListItem.title} width={60} height={50} loading="lazy" />
 			)}
 		</article>
 	);
 }
 
-export default CertainArticle;
+export default ArticleListItem;

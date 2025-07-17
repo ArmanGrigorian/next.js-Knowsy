@@ -1,4 +1,4 @@
-async function getWikiResults(searchValue: string) {
+async function getWikiResults(searchValue: string): Promise<T_ArticlesList> {
 	const searchParams = new URLSearchParams({
 		action: "query",
 		generator: "search",
