@@ -1,9 +1,9 @@
+import "./globals.css";
 import { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { ReactNode } from "react";
 import Footer from "../components/layout/Footer";
 import NavBar from "../components/layout/Header";
-import "./globals.css";
 
 const openSans = Open_Sans({ subsets: ["latin"] });
 
