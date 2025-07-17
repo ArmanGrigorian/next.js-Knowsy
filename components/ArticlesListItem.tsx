@@ -14,7 +14,7 @@ function ArticleListItem({ articleListItem }: I_ArticlesListItemProps) {
 	}
 
 	return (
-		<article className="w-[86%] flex justify-between items-center gap-4 px-4 pt-3 pb-2 border-[1px] border-neutral-800 rounded-lg">
+		<article className="w-[86%] flex justify-between items-center gap-4 px-4 pt-3 pb-2 border border-neutral-800 rounded-lg">
 			<div>
 				<h3 className="flex items-center gap-3">
 					<Link

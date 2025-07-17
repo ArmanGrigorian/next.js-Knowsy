@@ -3,11 +3,18 @@ import toCapitalize from "@/utils/toCapitalize";
 import Articles from "../../components/ArticlesList";
 import ScrollButton from "../../components/ScrollButton";
 
-export async function generateMetadata({ params }: I_SearchResultsProps) {
-  const wikiData: Promise<T_ArticlesList> = getWikiResults(params.searchValue);
+interface Props {
+  params: Promise<{
+    searchValue: string;
+  }>;
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { searchValue } = await params;
+  const wikiData: Promise<T_ArticlesList> = getWikiResults(searchValue);
   const wiki = await wikiData;
 
-  const displayValue = params.searchValue.replaceAll("%20", " ");
+  const displayValue = searchValue.replaceAll("%20", " ");
 
   if (!wiki?.query?.pages) {
     return {
@@ -22,8 +29,9 @@ export async function generateMetadata({ params }: I_SearchResultsProps) {
   };
 }
 
-async function SearchResults({ params }: I_SearchResultsProps) {
-  const wikiData: Promise<T_ArticlesList> = getWikiResults(params.searchValue);
+async function SearchResults({ params }: Props) {
+  const { searchValue } = await params;
+  const wikiData: Promise<T_ArticlesList> = getWikiResults(searchValue);
   const wiki = await wikiData;
   let articlesList: T_Article[] | undefined = [];
 
@@ -37,8 +45,8 @@ async function SearchResults({ params }: I_SearchResultsProps) {
 
       <h2 className="text-center py-2 text-xl font-bold text-green-600">
         {articlesList
-          ? toCapitalize(params.searchValue)
-          : `Nothing was found for your request "${params.searchValue}"`}
+          ? toCapitalize(searchValue)
+          : `Nothing was found for your request "${searchValue}"`}
       </h2>
 
       <Articles articlesList={articlesList} />
