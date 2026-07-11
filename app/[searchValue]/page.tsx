@@ -1,7 +1,7 @@
-import getWikiResults from "@/utils/getWikiResults";
+import { getWikiResults } from "@/services/wikipedia";
 import toCapitalize from "@/utils/toCapitalize";
-import Articles from "../../components/ArticlesList";
-import ScrollButton from "../../components/ScrollButton";
+import Articles from "@/components/ArticlesList";
+import ScrollButton from "@/components/ScrollButton";
 
 interface Props {
   params: Promise<{
@@ -34,22 +34,47 @@ async function SearchResults({ params }: Props) {
   const wikiData: Promise<T_ArticlesList> = getWikiResults(searchValue);
   const wiki = await wikiData;
   let articlesList: T_Article[] | undefined = [];
+  let nextOffset = 0;
 
   if (wiki && wiki.query && wiki.query.pages) {
     articlesList = Object.values(wiki.query.pages);
   }
 
+  if (wiki && wiki.continue && wiki.continue.gsroffset) {
+    nextOffset = wiki.continue.gsroffset;
+  }
+
+  const hasResults = articlesList && articlesList.length > 0;
+
   return (
-    <main className="bg-neutral-100 min-h-[calc(100vh-204px)] sm:min-h-[calc(100vh-156px)] relative p-4">
+    <main className="w-full flex flex-col pt-8 relative">
       <ScrollButton />
 
-      <h2 className="text-center py-2 text-xl font-bold text-green-600">
-        {articlesList
-          ? toCapitalize(searchValue)
-          : `Nothing was found for your request "${searchValue}"`}
-      </h2>
+      <div className="mb-10 text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-neutral-900 mb-2">
+          {hasResults ? (
+            <>
+              Results for{" "}
+              <span className="text-brand-primary italic">
+                "{toCapitalize(searchValue.replaceAll("%20", " "))}"
+              </span>
+            </>
+          ) : (
+            <span className="text-red-500">
+              Nothing found for "{searchValue.replaceAll("%20", " ")}"
+            </span>
+          )}
+        </h2>
+        {hasResults && (
+          <p className="text-neutral-400">Found articles to explore.</p>
+        )}
+      </div>
 
-      <Articles articlesList={articlesList} />
+      <Articles
+        initialArticles={articlesList}
+        initialOffset={nextOffset}
+        query={searchValue}
+      />
     </main>
   );
 }

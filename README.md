@@ -1,38 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Knowsy!
 
-## Getting Started
+Welcome to **Knowsy** — a futuristic, lightning-fast knowledge portal powered by Wikipedia.
 
-First, run the development server:
+Knowsy takes the wealth of human knowledge available on Wikipedia and presents it in a beautiful, distraction-free, glassmorphism interface. Designed with performance and aesthetics in mind, it provides an unparalleled reading and discovery experience.
+
+## ✨ Features
+
+- **Blazing Fast Searches**: Search through millions of Wikipedia articles instantly with real-time debounced autocomplete.
+- **Article of the Day**: Discover something new every day! The homepage fetches Wikipedia's "Featured Article of the Day" directly on the server.
+- **"Surprise Me" Discovery**: Feeling lucky? Click the dice icon to fetch a completely random article to learn about.
+- **Read Aloud (Text-to-Speech)**: Don't feel like reading? Knowsy uses the native Web Speech API to read article summaries out loud to you.
+- **Quick Share**: Instantly copy direct Wikipedia links to your clipboard to share with friends.
+- **Keyboard Navigation**: Fully optimized for power users. Use `Ctrl+K` to focus search, `Arrow Keys` to navigate autocomplete, and `Enter` to search.
+- **Stunning UI**: Built with Tailwind CSS and Framer Motion, featuring deep cyber-glow backgrounds, glass panels, and smooth micro-animations.
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Data Source**: Wikipedia REST API & Action API
+
+## 🛠 Architecture
+
+Knowsy adheres strictly to modern React and Next.js best practices:
+
+- **React Server Components (RSC)**: The homepage and featured article fetching happen securely on the server with aggressively cached ISR (`revalidate: 86400`), resulting in near-instant load times.
+- **Custom Hooks**: Complex browser APIs (Speech Synthesis, Clipboard) and DOM logic (Keyboard shortcuts, Outside clicks) are extracted into isolated, reusable custom hooks (`useTextToSpeech`, `useClipboard`, `useSearchPanel`).
+- **Service Layer**: All Wikipedia API calls are centralized in `services/wikipedia.ts` to keep the UI components purely presentational.
+- **Error Handling**: Implements global Error and Loading boundaries (`error.tsx`, `loading.tsx`) to gracefully handle network failures.
+
+## 💻 Getting Started
+
+First, install the dependencies using pnpm:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Then, run the development server:
+
+```bash
 pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📄 License
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is open-source and free to use. Knowledge should be accessible to everyone!
